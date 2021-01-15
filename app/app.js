@@ -13,7 +13,7 @@ const addIngredient = () => {
     $('#ingredients').html('');
     ingredients.map((ingredient, index) => {
         let item = `<div class="ingredient__item" id="ingredient-${index}">
-                        <button onclick="deleteIngredient('ingredient-${index}');" type="button" class="ingredient__item__delete"><i>-</i></button> 
+                        <button onclick="deleteIngredient(${index});" type="button" class="ingredient__item__delete"><i>-</i></button> 
                         <span>${ingredient}</span>
                     </div>`;
         $('#ingredients').append(item);
@@ -23,5 +23,6 @@ const addIngredient = () => {
     console.log(ingredients);
 }
 const deleteIngredient = (ingredient) => {
-    $(`#${ingredient}`).remove();
+    $(`#ingredient-${ingredient}`).remove();
+    ingredients.splice(ingredient, 1);
 }
