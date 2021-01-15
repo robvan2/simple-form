@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./app/app.css">
+</head>
+
+<body>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-12 col-lg-10 mx-auto">
+                <h1>DAY PLATE</h1>
+                <hr class="lead my-4">
+                <div class="container">
+                    <form class="w-100" action="" method="POST" enctype="multipart/form-data">
+                        <div class="form-group row align-items-start">
+                            <label for="plat" class="col-12 col-md-2 col-form-label ">Plat </label>
+                            <div class="col-12 col-md-7">
+                                <input type="text" class="form-control" name="plat" id="plat"
+                                    placeholder="Search a plate">
+                            </div>
+                            <button type="button"
+                                class="col-2 mt-2 mt-md-0 mx-auto btn btn-block btn-primary">Add</button>
+                        </div>
+                        <div class="form-group row align-items-start">
+                            <label for="price" class="col-12 col-md-2 col-form-label ">Price </label>
+                            <div class="col-12 col-md-5">
+                                <input type="number" min="0" step="1" class="form-control" name="price" id="price"
+                                    placeholder="Search a plate">
+                            </div>
+                        </div>
+                        <div class="form-group row align-items-start">
+                            <label for="plat" class="col-12 col-md-2 col-form-label ">Plat </label>
+                            <div class="col-12 col-md-7">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" accept="image/*" id="image">
+                                    <label class="custom-file-label" for="image">Choose image</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row align-items-start">
+                            <label for="description" class="col-12 col-md-2 col-form-label ">Description </label>
+                            <div class="col-12 col-md-10">
+                                <textarea class="form-control" name="description" id="description"
+                                    placeholder="Search a plate"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row ingredients__container">
+                            <label for="plat" class="col-form-label col-12 col-md-2 mr-3">Ingredients </label>
+                            <div class="col-12 col-md-9">
+                                <div class="row">
+                                    <div id="ingredients" class="ingredients__list mr-3">
+                                    </div>
+                                    <div class="d-flex mx-auto flex-wrap flex-md-nowrap">
+                                        <input type="text" class="form-control mt-2 mx-auto mx-md-unset mr-md-3"
+                                            name="ingredient" id="ingredient" placeholder="Add ingredient">
+                                        <button onclick="addIngredient();" type="button"
+                                            class=" mt-2 btn btn-primary mx-auto">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <fieldset class="mt-5">
+                            <div class="form__separation">
+                                <legend>Planing</legend>
+                                <div class="form__separation__line"></div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col radio__container mb-3">
+                                    <div class="radio_wrapper">
+                                        <label class="form-check-label">
+                                            <input onchange="disableDatePicker();" type="radio" class="form-check-input"
+                                                name="date" id="today" checked value="today">
+                                            Today
+                                        </label>
+                                    </div>
+                                    <div class="radio_wrapper">
+                                        <label class="form-check-label">
+                                            <input onchange="disableDatePicker();" type="radio" class="form-check-input"
+                                                name="date" id="tomorrow" value="tomorrow">
+                                            Tomorrow
+                                        </label>
+                                    </div>
+                                    <div class="radio_wrapper">
+                                        <label class="form-check-label">
+                                            <input onchange="enableDatePicker();" type="radio" class="form-check-input"
+                                                name="date" id="choosed">
+                                            Date
+                                        </label>
+                                    </div>
+                                    <div class="radio__wrapper">
+                                        <input disabled type="date" class="form-control" name="picked-date"
+                                            id="picked-date" onchange="dateValue(this)">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-start my-4">
+                                <div class="col-12 col-md-5 mt-2 mt-md-0">
+                                    <input type="time" class="form-control" name="hour" id="hour">
+                                </div>
+                                <div class="col-12 col-md-5 mt-2 mt-md-0">
+                                    <input type="time" class="form-control" name="hour2" id="hour2">
+                                </div>
+                                <button type="button"
+                                    class="col-2 mt-2 mt-md-0 mx-auto btn btn-block btn-primary">Add</button>
+                            </div>
+                        </fieldset>
+                        <button type="submit" id="submit" class="my-4 btn btn-primary btn-lg btn-block">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="./app/app.js"></script>
+</body>
+
+</html>
